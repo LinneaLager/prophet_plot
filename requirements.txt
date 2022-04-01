@@ -8,3 +8,5 @@ click==8
 numpy==1.21.5
 statsmodels==0.13.2
 sklearn==0.0
+cmdstanpy==0.9.68
+pystan==2.19.1.1
