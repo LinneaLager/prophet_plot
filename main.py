@@ -47,6 +47,7 @@ with header:
 with dataset:
 	st.header('Covid-19 dataset')
 	st.text('Source can be found here: https://www.kaggle.com/datasets/imdevskp/corona-virus-report')
+	covid_data = get_data('data/covid_data.csv')
 	st.write(covid_data.head())
 
 	#st.subheader('Pick-up location ID distribution on the NYC dataset')
