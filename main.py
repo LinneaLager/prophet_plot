@@ -71,7 +71,7 @@ with dataset:
 	#covid_data.columns = ["ds","y"]
 
 	#model = Prophet(growth="linear", seasonality_mode="multiplicative", changepoint_prior_scale=30, seasonality_prior_scale=35, daily_seasonality=False, weekly_seasonality=False, yearly_seasonality=False
-                ).add_seasonality(
+                #).add_seasonality(
                     #name='montly',
                     #period=30,
                     #fourier_order=30)
