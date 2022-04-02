@@ -49,11 +49,11 @@ with dataset:
 	st.text('Source can be found here: https://www.kaggle.com/datasets/imdevskp/corona-virus-report')
 	st.write(covid_data.head())
 
-	st.subheader('Pick-up location ID distribution on the NYC dataset')
-	chart_data = pd.DataFrame(
+	#st.subheader('Pick-up location ID distribution on the NYC dataset')
+	#chart_data = pd.DataFrame(
      
-	columns=['ds', 'y'])
-	st.line_chart(chart_data)
+	#columns=['ds', 'y'])
+	#st.line_chart(chart_data)
 
 
 #with features:
