@@ -32,8 +32,8 @@ st.markdown(
 
 
 @st.cache
-def get_data(data):
-	covid_data = pd.read_csv('https://raw.githubusercontent.com/LinneaLager/Prophet_Covid_19/main/streamlit.csv')
+def get_data(covid_data):
+	covid_data = get_data('data/covid_data.csv')
 
 	return covid_data
 
