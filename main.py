@@ -1,3 +1,6 @@
+import sys
+sys.setrecursionlimit(5000)
+
 import streamlit as st
 from fbprophet import Prophet
 import pandas as pd
@@ -12,6 +15,7 @@ import statsmodels.api as sm
 plt.style.use('fivethirtyeight')
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 plt.style.use('fivethirtyeight')
+
 
 header = st.beta_container()
 dataset = st.beta_container()
