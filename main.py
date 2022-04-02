@@ -68,13 +68,13 @@ with model_training:
 	st.header('Time to train the model!')
 	st.text('Here you get to choose the hyperparameters of the model and see how the performance changes!')
 
+covid_data['ds'] = pd.to_datetime(covid_data['ds'])
 covid_data.columns = ["ds","y"]
 model = Prophet(growth="linear", seasonality_mode="multiplicative", changepoint_prior_scale=30, seasonality_prior_scale=35, daily_seasonality=False, weekly_seasonality=False, yearly_seasonality=False
                 ).add_seasonality(
                     name='montly',
                     period=30,
                     fourier_order=30)
-
 
 model.fit(covid_data)
 
