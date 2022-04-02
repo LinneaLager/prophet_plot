@@ -35,7 +35,6 @@ st.markdown(
 )
 
 
-@st.cache
 def get_data(covid_data):
 	covid_data = get_data('data/covid_data.csv')
 
