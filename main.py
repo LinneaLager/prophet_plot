@@ -17,7 +17,7 @@ plt.style.use('fivethirtyeight')
 header = st.beta_container()
 dataset = st.beta_container()
 exploredata = st.beta_container()
-#model_training = st.beta_container()
+forecast = st.beta_container()
 
 
 st.markdown(
@@ -66,14 +66,37 @@ with exploredata:
     plt.grid(True)
     st.pyplot(plt)
 
-	#st.header('The feature used')
 
-	#st.markdown('Number of cases in Sweden')
+with forecast:
+	st.header('Time to train the model!')
+	
+	data = data.drop(['Unnamed: 0'], axis=1)
+	data = data.sort_values(by='ds')
 
+	# Check time intervals
+	data['delta'] = data['ds'] - data['ds'].shift(1)
 
+	data[['ds', 'delta']].head()
+	data['delta'].sum(), data['delta'].count()
+	data = data.drop('delta', axis=1)
+	data.isna().sum()
+	
+	data.columns = ["ds","y"]
+	model = Prophet(growth="linear", seasonality_mode="multiplicative", changepoint_prior_scale=30, seasonality_prior_scale=35,
+               daily_seasonality=False, weekly_seasonality=False, yearly_seasonality=False
+               ).add_seasonality(
+                name='montly',
+                period=30,
+                fourier_order=30)
 
-#with model_training:
-	#st.header('Time to train the model!')
+	model.fit(data)
+	future = model.make_future_dataframe(periods= 30, freq='d')
+	forecast = model.predict(future)
+	model.plot(forecast);
+	plt.title("Förutsägelse covid 19 smittspridning")
+	st.pyplot(plt)
+	
+	
 	#st.text('Here you get to choose the hyperparameters of the model and see how the performance changes!')
 
 
