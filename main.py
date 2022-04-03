@@ -8,10 +8,11 @@ import itertools
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.stattools import adfuller
+from prophet.plot import plot_plotly, plot_components_plotly
 import statsmodels.api as sm
 plt.style.use('fivethirtyeight')
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-plt.style.use('fivethirtyeight')
+
 
 
 header = st.beta_container()
@@ -96,6 +97,11 @@ with forecast:
 	plt.title("Förutsägelse covid 19 smittspridning")
 	st.pyplot(plt)
 	
+	fig2 = model.plot_components(forecast)
+	st.pyplot(fig2)
+	
+	fig3 = plot_plotly(model, forecast)
+	st.pyplot(fig3)
 	
 	#st.text('Here you get to choose the hyperparameters of the model and see how the performance changes!')
 
