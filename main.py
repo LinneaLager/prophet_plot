@@ -1,6 +1,3 @@
-import sys
-sys.setrecursionlimit(5000)
-
 import streamlit as st
 from fbprophet import Prophet
 import pandas as pd
@@ -34,7 +31,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-@st.cache
+@st.cache(allow_output_mutation=True)
 
 def get_data(filename):
 	data = pd.read_csv(filename)
