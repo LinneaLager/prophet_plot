@@ -8,7 +8,7 @@ import itertools
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.stattools import adfuller
-import plot_plotly
+import plotly
 import statsmodels.api as sm
 plt.style.use('fivethirtyeight')
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
