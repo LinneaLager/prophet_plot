@@ -11,3 +11,4 @@ pystan==2.19.1.1
 cmdstanpy==0.9.5
 xgboost==1.0.2
 numba==0.48.0
+plotly==5.6.0
