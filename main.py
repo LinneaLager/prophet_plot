@@ -83,14 +83,14 @@ with forecast:
 	
 	data.columns = ["ds","y"]
 	model = Prophet(growth="linear", seasonality_mode="multiplicative", changepoint_prior_scale=30, seasonality_prior_scale=35,
-               daily_seasonality=False, weekly_seasonality=False, yearly_seasonality=False
+               daily_seasonality=True, weekly_seasonality=True, yearly_seasonality=True
                ).add_seasonality(
                 name='montly',
-                period=30,
+                period=10,
                 fourier_order=30)
 
 	model.fit(data)
-	future = model.make_future_dataframe(periods= 30, freq='d')
+	future = model.make_future_dataframe(periods= 3, freq='d')
 	forecast = model.predict(future)
 	model.plot(forecast);
 	plt.title("Förutsägelse covid 19 smittspridning")
