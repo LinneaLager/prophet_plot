@@ -100,6 +100,8 @@ with forecast:
 	fig2 = model.plot_components(forecast)
 	st.pyplot(fig2)
 	
+	st.subheader('Show model metrics')
+	
 	# calculate MAE between expected and predicted values
 	y_true = data['y'].values
 	y_pred = forecast['yhat'][:765].values
