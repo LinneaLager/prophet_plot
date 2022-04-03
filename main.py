@@ -69,7 +69,7 @@ with features:
     sns.lineplot(data=data, x="ds", y="y")
     plt.title("Fall över tid")
     plt.grid(True)
-    st.write(plt.show())
+    st.pyplot(plt)
 
 	#st.header('The feature used')
 
