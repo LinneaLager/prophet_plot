@@ -19,7 +19,7 @@ plt.style.use('fivethirtyeight')
 
 header = st.beta_container()
 dataset = st.beta_container()
-features = st.beta_container()
+exploredata = st.beta_container()
 #model_training = st.beta_container()
 
 
@@ -54,15 +54,13 @@ with dataset:
 	data = get_data('data/covid_data.csv')
 	st.write(data.head())
 
-	#st.subheader('Pick-up location ID distribution on the NYC dataset')
-	#chart_data = pd.DataFrame(
-     
-	#columns=['ds', 'y'])
-	#st.line_chart(chart_data)
+	st.subheader('Check if the the data is set up in proper format and then start modeling/forecasting.')
+	st.write(data.dtypes)
 
 
-with features:
-
+with exploredata:
+	
+    st.header('Covid-19 cases over time')	
     data['ds'] = pd.to_datetime(data['ds'])
     #Visualize the dataframe
     plt.figure(figsize=(10,5))
