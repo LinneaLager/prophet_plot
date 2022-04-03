@@ -100,8 +100,27 @@ with forecast:
 	fig2 = model.plot_components(forecast)
 	st.pyplot(fig2)
 	
-	fig3 = plot_plotly(model, forecast)
-	st.pyplot(fig3)
+	# calculate MAE between expected and predicted values
+	y_true = data['y'].values
+	y_pred = forecast['yhat'][:765].values
+	mae = mean_absolute_error(y_true, y_pred)
+	st.write('MAE: %.3f' % mae)
+	r = r2_score(y_true, y_pred)
+	st.write('R-squared Score: %.3f' % r)
+	rms = mean_squared_error(y_true, y_pred, squared=False)
+	st.write('RMSE: %.3f' % rms)
+	
+	plt.figure(figsize=(10,5))
+	# plot expected vs actual
+	plt.plot(y_true, label='Actual')
+	plt.plot(y_pred, label='Predicted')
+	plt.title("Actual vs Predicted")
+	plt.grid(True)
+	plt.legend()
+	st.pyplot(plt)
+	
+	#fig3 = plot_plotly(model, forecast)
+	#st.pyplot(fig3)
 	
 	#st.text('Here you get to choose the hyperparameters of the model and see how the performance changes!')
 
