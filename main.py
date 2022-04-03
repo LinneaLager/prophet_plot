@@ -70,7 +70,7 @@ with exploredata:
 with forecast:
 	st.header('Time to train the model!')
 	
-	data = data.drop(['Unnamed: 0'], axis=1)
+	#data = data.drop(['Unnamed: 0'], axis=1)
 	data = data.sort_values(by='ds')
 
 	# Check time intervals
