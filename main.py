@@ -37,7 +37,7 @@ st.markdown(
 @st.cache
 
 def get_data(filename):
-	covid_data = get_data(filename)
+	covid_data = pd.read_csv(filename)
 
 	return covid_data
 
