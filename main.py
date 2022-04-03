@@ -37,9 +37,9 @@ st.markdown(
 @st.cache
 
 def get_data(filename):
-	covid_data = pd.read_csv(filename)
+	data = pd.read_csv(filename)
 
-	return covid_data
+	return data
 
 
 
@@ -51,8 +51,8 @@ with header:
 with dataset:
 	st.header('Covid-19 dataset')
 	st.text('Source can be found here: https://www.kaggle.com/datasets/imdevskp/corona-virus-report')
-	covid_data = get_data('data/covid_data.csv')
-	st.write(covid_data.head())
+	data = get_data('data/covid_data.csv')
+	st.write(data.head())
 
 	#st.subheader('Pick-up location ID distribution on the NYC dataset')
 	#chart_data = pd.DataFrame(
@@ -61,7 +61,16 @@ with dataset:
 	#st.line_chart(chart_data)
 
 
-#with features:
+with features:
+
+    data['ds'] = pd.to_datetime(data['ds'])
+    #Visualize the dataframe
+    plt.figure(figsize=(10,5))
+    sns.lineplot(data=data, x="ds", y="y")
+    plt.title("Fall över tid")
+    plt.grid(True)
+    plt.show()
+
 	#st.header('The feature used')
 
 	#st.markdown('Number of cases in Sweden')
