@@ -34,9 +34,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+@st.cache
 
-def get_data(covid_data):
-	covid_data = get_data('data/covid_data.csv')
+def get_data(filename):
+	covid_data = get_data(filename)
 
 	return covid_data
 
