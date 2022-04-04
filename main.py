@@ -61,14 +61,14 @@ with dataset:
 
 with exploredata:
 	
-    st.header('Smittutveckling')	
-    data['ds'] = pd.to_datetime(data['ds'])
-    #Visualize the dataframe
-    plt.figure(figsize=(10,5))
-    sns.lineplot(data=data, x="ds", y="y")
-    plt.title("Fall över tid")
-    plt.grid(True)
-    st.pyplot(plt)
+	st.header('Smittutveckling')	
+	data['ds'] = pd.to_datetime(data['ds'])
+	#Visualize the dataframe
+	plt.figure(figsize=(10,5))
+	sns.lineplot(data=data, x="ds", y="y")
+	plt.title("Fall över tid")
+	plt.grid(True)
+	st.pyplot(plt)
 
 
 with forecast:
@@ -126,15 +126,15 @@ with forecast:
 
 with exploredeathsdata:
     
-    data_deaths = get_data('data/covid_deaths.csv')
-    st.header('Smittutveckling')	
-    data_deaths['ds'] = pd.to_datetime(data_deaths['ds'])
-    #Visualize the dataframe
-    plt.figure(figsize=(10,5))
-    sns.lineplot(data_deaths=data_deaths, x="ds", y="y")
-    plt.title("Fall över tid")
-    plt.grid(True)
-    st.pyplot(plt)
+	data_deaths = get_data('data/covid_deaths.csv')
+	st.header('Smittutveckling')	
+	data_deaths['ds'] = pd.to_datetime(data_deaths['ds'])
+	#Visualize the dataframe
+	plt.figure(figsize=(10,5))
+	sns.lineplot(data_deaths=data_deaths, x="ds", y="y")
+	plt.title("Fall över tid")
+	plt.grid(True)
+	st.pyplot(plt)
 	
 
 	
