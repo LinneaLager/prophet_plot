@@ -60,7 +60,7 @@ with dataset:
 
 with exploredata:
 	
-    st.header('Covid-19 fall över time')	
+    st.header('Smittutveckling')	
     data['ds'] = pd.to_datetime(data['ds'])
     #Visualize the dataframe
     plt.figure(figsize=(10,5))
