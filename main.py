@@ -124,7 +124,7 @@ with forecast:
 	plt.legend()
 	st.pyplot(plt)
 	
-with exploredata:
+with exploredeathsdata:
 	
 	data_deaths = get_data('data/covid_deaths.csv')
     	st.header('Smittutveckling')	
