@@ -19,6 +19,8 @@ header = st.beta_container()
 dataset = st.beta_container()
 exploredata = st.beta_container()
 forecast = st.beta_container()
+forecast_deaths = st.beta_container()
+
 
 
 st.markdown(
@@ -121,30 +123,58 @@ with forecast:
 	plt.legend()
 	st.pyplot(plt)
 	
-	#fig3 = plot_plotly(model, forecast)
-	#st.pyplot(fig3)
+with forecast_deaths:
+	st.header('Time to train the model!')
 	
-	#st.text('Here you get to choose the hyperparameters of the model and see how the performance changes!')
+	data_deaths = get_data('data/covid_deaths.csv')
+	#data = data.drop(['Unnamed: 0'], axis=1)
+	data_deaths = data_deaths.sort_values(by='ds')
 
+	data_deaths['ds'] = pd.to_datetime(data_deaths['ds'])
 
-	#covid_data.columns = ["ds","y"]
+	# Check time intervals
+	data_deaths['delta'] = data_deaths['ds'] - data_deaths['ds'].shift(1)
 
-	#model = Prophet(growth="linear", seasonality_mode="multiplicative", changepoint_prior_scale=30, seasonality_prior_scale=35, daily_seasonality=False, weekly_seasonality=False, yearly_seasonality=False
-                #).add_seasonality(
-                    #name='montly',
-                    #period=30,
-                    #fourier_order=30)
+	data_deaths[['ds', 'delta']].head()
+	data_deaths['delta'].sum(), data_deaths['delta'].count()
+	data_deaths = data_deaths.drop('delta', axis=1)
+	data_deaths.isna().sum()
+	
+	data_deaths.columns = ["ds","y"]
+	model = Prophet(growth="linear", seasonality_mode="multiplicative", changepoint_prior_scale=30, seasonality_prior_scale=35,
+               daily_seasonality=True, weekly_seasonality=True, yearly_seasonality=True
+               ).add_seasonality(
+                name='montly',
+                period=10,
+                fourier_order=30)
 
-
-	#model.fit(covid_data)
-
-
-	#future = model.make_future_dataframe(periods= 30, freq='d')
-
-
-	#forecast = model.predict(future)
-
-	#chart_data = pd.DataFrame(
-     
-	#columns=['ds', 'y'])
-	#st.line_chart(chart_data)
+	model.fit(data)
+	future = model.make_future_dataframe(periods= 3, freq='d')
+	forecast = model.predict(future)
+	model.plot(forecast);
+	plt.title("Förutsägelse covid 19 smittspridning")
+	st.pyplot(plt)
+	
+	fig2 = model.plot_components(forecast)
+	st.pyplot(fig2)
+	
+	st.subheader('Show model metrics')
+	
+	# calculate MAE between expected and predicted values
+	y_true = data['y'].values
+	y_pred = forecast['yhat'][:765].values
+	mae = mean_absolute_error(y_true, y_pred)
+	st.write('MAE: %.3f' % mae)
+	r = r2_score(y_true, y_pred)
+	st.write('R-squared Score: %.3f' % r)
+	rms = mean_squared_error(y_true, y_pred, squared=False)
+	st.write('RMSE: %.3f' % rms)
+	
+	plt.figure(figsize=(10,5))
+	# plot expected vs actual
+	plt.plot(y_true, label='Actual')
+	plt.plot(y_pred, label='Predicted')
+	plt.title("Actual vs Predicted")
+	plt.grid(True)
+	plt.legend()
+	st.pyplot(plt)
