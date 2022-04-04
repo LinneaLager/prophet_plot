@@ -152,7 +152,7 @@ with forecast_deaths:
 	future = model.make_future_dataframe(periods= 3, freq='d')
 	forecast = model.predict(future)
 	model.plot(forecast);
-	plt.title("Förutsägelse covid 19 smittspridning")
+	plt.title("Covid-19 Deaths")
 	st.pyplot(plt)
 	
 	fig2 = model.plot_components(forecast)
