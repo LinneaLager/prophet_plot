@@ -123,18 +123,20 @@ with forecast:
 	plt.grid(True)
 	plt.legend()
 	st.pyplot(plt)
-	
+
 with exploredeathsdata:
+    
+    data_deaths = get_data('data/covid_deaths.csv')
+    st.header('Smittutveckling')	
+    data_deaths['ds'] = pd.to_datetime(data_deaths['ds'])
+    #Visualize the dataframe
+    plt.figure(figsize=(10,5))
+    sns.lineplot(data_deaths=data_deaths, x="ds", y="y")
+    plt.title("Fall över tid")
+    plt.grid(True)
+    st.pyplot(plt)
 	
-	data_deaths = get_data('data/covid_deaths.csv')
-    	st.header('Smittutveckling')	
-    	data_deaths['ds'] = pd.to_datetime(data_deaths['ds'])
-    	#Visualize the dataframe
-    	plt.figure(figsize=(10,5))
-    	sns.lineplot(data_deaths=data_deaths, x="ds", y="y")
-    	plt.title("Fall över tid")
-    	plt.grid(True)
-    	st.pyplot(plt)
+
 	
 with forecast_deaths:
 	st.header('Prophet modellen tränas för antalet dödsfall')
