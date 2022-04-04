@@ -184,12 +184,12 @@ with forecast_deaths:
 	rms = mean_squared_error(y_true, y_pred, squared=False)
 	st.write('RMSE: %.3f' % rms)
 	
-	#plt.figure(figsize=(10,5))
+	plt.figure(figsize=(10,5))
 	# plot expected vs actual
-	#plt.plot(y_true, label='Actual')
-	#plt.plot(y_pred, label='Predicted')
-	#plt.title("Actual vs Predicted")
-	#plt.grid(True)
-	#plt.legend()
-	#st.pyplot(plt)
+	plt.plot(y_true, label='Actual')
+	plt.plot(y_pred, label='Predicted')
+	plt.title("Actual vs Predicted")
+	plt.grid(True)
+	plt.legend()
+	st.pyplot(plt)
 #hey
