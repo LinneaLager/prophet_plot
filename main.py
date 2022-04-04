@@ -160,7 +160,7 @@ with forecast_deaths:
 	
 	st.subheader('Mätvärdens resultat:')
 	
-	calculate MAE between expected and predicted values
+	#calculate MAE between expected and predicted values
 	y_true = data_deaths['y'].values
 	y_pred = forecast['yhat'][:765].values
 	mae = mean_absolute_error(y_true, y_pred)
@@ -170,12 +170,12 @@ with forecast_deaths:
 	rms = mean_squared_error(y_true, y_pred, squared=False)
 	st.write('RMSE: %.3f' % rms)
 	
-	plt.figure(figsize=(10,5))
+	#plt.figure(figsize=(10,5))
 	# plot expected vs actual
-	plt.plot(y_true, label='Actual')
-	plt.plot(y_pred, label='Predicted')
-	plt.title("Actual vs Predicted")
-	plt.grid(True)
-	plt.legend()
-	st.pyplot(plt)
+	#plt.plot(y_true, label='Actual')
+	#plt.plot(y_pred, label='Predicted')
+	#plt.title("Actual vs Predicted")
+	#plt.grid(True)
+	#plt.legend()
+	#st.pyplot(plt)
 #hey
