@@ -129,7 +129,7 @@ with exploredeathsdata:
 	data_deaths = get_data('data/covid_deaths.csv')
 	st.header('Smittutveckling')	
 	st.write(data_deaths.head())
-	data_deaths[0] = pd.to_datetime(data_deaths[0])
+	data_deaths['ds'] = pd.to_datetime(data_deaths['ds'])
 	#Visualize the dataframe
 	plt.figure(figsize=(10,5))
 	sns.lineplot(data=data_deaths, x="ds", y="y")
@@ -147,7 +147,7 @@ with forecast_deaths:
 	data_deaths.columns = data_deaths.columns.str.strip()
 	data_deaths = data_deaths.sort_values(by='ds')
 
-	data_deaths['ds'] = pd.to_datetime(data_deaths['ds'])
+	#data_deaths['ds'] = pd.to_datetime(data_deaths['ds'])
 
 	# Check time intervals
 	data_deaths['delta'] = data_deaths['ds'] - data_deaths['ds'].shift(1)
