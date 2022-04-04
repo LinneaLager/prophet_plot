@@ -148,7 +148,7 @@ with forecast_deaths:
                 period=10,
                 fourier_order=30)
 
-	model.fit(data)
+	model.fit(data_deaths)
 	future = model.make_future_dataframe(periods= 3, freq='d')
 	forecast = model.predict(future)
 	model.plot(forecast);
@@ -161,7 +161,7 @@ with forecast_deaths:
 	st.subheader('Show model metrics')
 	
 	# calculate MAE between expected and predicted values
-	y_true = data['y'].values
+	y_true = data_deaths['y'].values
 	y_pred = forecast['yhat'][:765].values
 	mae = mean_absolute_error(y_true, y_pred)
 	st.write('MAE: %.3f' % mae)
