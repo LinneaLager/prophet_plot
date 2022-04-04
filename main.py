@@ -126,10 +126,10 @@ with forecast:
 
 with exploredeathsdata:
     
-	data_deaths = get_data('data/covid_deaths.csv')
+	data_deaths = get_data('data/covid_data.csv')
 	st.header('Smittutveckling')	
 	st.write(data_deaths.head())
-	#data_deaths['ds'] = pd.to_datetime(data_deaths['ds'])
+	data_deaths['ds'] = pd.to_datetime(data_deaths['ds'])
 	#Visualize the dataframe
 	plt.figure(figsize=(10,5))
 	sns.lineplot(data=data_deaths, x="ds", y="y")
