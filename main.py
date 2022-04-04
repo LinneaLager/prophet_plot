@@ -132,7 +132,7 @@ with exploredeathsdata:
 	data_deaths['ds'] = pd.to_datetime(data_deaths['ds'])
 	#Visualize the dataframe
 	plt.figure(figsize=(10,5))
-	sns.lineplot(data=data_deaths, x="ds", y="y")
+	sns.lineplot(data_deaths=data_deaths, x="ds", y="y")
 	plt.title("Fall över tid")
 	plt.grid(True)
 	st.pyplot(plt)
