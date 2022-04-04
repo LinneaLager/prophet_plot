@@ -128,7 +128,7 @@ with forecast_deaths:
 	
 	data_deaths = get_data('data/covid_deaths.csv')
 	#data = data.drop(['Unnamed: 0'], axis=1)
-	df.columns = df.columns.str.strip()
+	data_deaths.columns = data_deaths.columns.str.strip()
 	data_deaths = data_deaths.sort_values(by='ds')
 
 	data_deaths['ds'] = pd.to_datetime(data_deaths['ds'])
