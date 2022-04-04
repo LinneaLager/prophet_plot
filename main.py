@@ -126,7 +126,7 @@ with forecast:
 
 with exploredeathsdata:
     
-	data_deaths = get_data('data/covid_deeaths.csv')
+	data_deaths = get_data('data/covid_deaths.csv')
 	st.header('Smittutveckling')	
 	st.write(data_deaths.head())
 	data_deaths[0] = pd.to_datetime(data_deaths[0])
