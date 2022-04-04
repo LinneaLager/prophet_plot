@@ -44,23 +44,23 @@ def get_data(filename):
 
 
 with header:
-	st.title('Covid-19 timeseries modelling')
-	st.text('This is a comparison between results from SARIMA and Prophet')
+	st.title('Covid-19 timeserie modellering')
+	st.text('Detta är en jämförelse mellan dödsfall och insjuknande i COVID-19. Modellen som används är Prophet.')
 
 
 with dataset:
-	st.header('Covid-19 dataset')
-	st.text('Source can be found here: https://www.kaggle.com/datasets/imdevskp/corona-virus-report')
+	st.header('Introduktion till Covid-19 dataset')
+	st.text('Datan har hämtats härifrån: https://www.kaggle.com/datasets/imdevskp/corona-virus-report')
 	data = get_data('data/covid_data.csv')
 	st.write(data.head())
 
-	st.subheader('Check if the the data is set up in proper format and then start modeling/forecasting.')
+	st.subheader('Detta är formatet för datan.')
 	st.write(data.dtypes)
 
 
 with exploredata:
 	
-    st.header('Covid-19 cases over time')	
+    st.header('Covid-19 fall över time')	
     data['ds'] = pd.to_datetime(data['ds'])
     #Visualize the dataframe
     plt.figure(figsize=(10,5))
@@ -71,7 +71,7 @@ with exploredata:
 
 
 with forecast:
-	st.header('Time to train the model!')
+	st.header('Träning av Prophet modell pågår...')
 	
 	#data = data.drop(['Unnamed: 0'], axis=1)
 	data = data.sort_values(by='ds')
@@ -96,13 +96,13 @@ with forecast:
 	future = model.make_future_dataframe(periods= 3, freq='d')
 	forecast = model.predict(future)
 	model.plot(forecast);
-	plt.title("Förutsägelse covid 19 smittspridning")
+	plt.title("Förutsägelse för covid 19 smittspridning")
 	st.pyplot(plt)
 	
 	fig2 = model.plot_components(forecast)
 	st.pyplot(fig2)
 	
-	st.subheader('Show model metrics')
+	st.subheader('Model mätvärden:')
 	
 	# calculate MAE between expected and predicted values
 	y_true = data['y'].values
@@ -124,7 +124,7 @@ with forecast:
 	st.pyplot(plt)
 	
 with forecast_deaths:
-	st.header('Time to train the model!')
+	st.header('Prophet modellen tränas för antalet dödsfall')
 	
 	data_deaths = get_data('data/covid_deaths.csv')
 	#data = data.drop(['Unnamed: 0'], axis=1)
@@ -158,7 +158,7 @@ with forecast_deaths:
 	fig2 = model.plot_components(forecast)
 	st.pyplot(fig2)
 	
-	st.subheader('Show model metrics')
+	st.subheader('Mätvärdens resultat:')
 	
 	# calculate MAE between expected and predicted values
 	y_true = data_deaths['y'].values
