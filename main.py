@@ -19,6 +19,7 @@ header = st.beta_container()
 dataset = st.beta_container()
 exploredata = st.beta_container()
 forecast = st.beta_container()
+exploredeathsdata = st.beta_container()
 forecast_deaths = st.beta_container()
 
 
@@ -123,10 +124,22 @@ with forecast:
 	plt.legend()
 	st.pyplot(plt)
 	
+with exploredata:
+	
+	data_deaths = get_data('data/covid_deaths.csv')
+    	st.header('Smittutveckling')	
+    	data_deaths['ds'] = pd.to_datetime(data_deaths['ds'])
+    	#Visualize the dataframe
+    	plt.figure(figsize=(10,5))
+    	sns.lineplot(data_deaths=data_deaths, x="ds", y="y")
+    	plt.title("Fall över tid")
+    	plt.grid(True)
+    	st.pyplot(plt)
+	
 with forecast_deaths:
 	st.header('Prophet modellen tränas för antalet dödsfall')
 	
-	data_deaths = get_data('data/covid_deaths.csv')
+	
 	#data = data.drop(['Unnamed: 0'], axis=1)
 	data_deaths.columns = data_deaths.columns.str.strip()
 	data_deaths = data_deaths.sort_values(by='ds')
