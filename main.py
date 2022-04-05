@@ -14,12 +14,12 @@ plt.style.use('fivethirtyeight')
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 
-header = st.beta_container()
-dataset = st.beta_container()
-exploredata = st.beta_container()
-forecast = st.beta_container()
-exploredeathsdata = st.beta_container()
-forecast_deaths = st.beta_container()
+header = st.container()
+dataset = st.container()
+exploredata = st.container()
+forecast = st.container()
+exploredeathsdata = st.container()
+forecast_deaths = st.container()
 
 
 
@@ -27,7 +27,7 @@ st.markdown(
     """
     <style>
     .main {
-    background-color: #F5F5F5;
+    background-color: #000000;
     }
     </style>
     """,
@@ -55,7 +55,7 @@ with dataset:
 	st.write(data.head())
 
 	st.subheader('Detta är formatet för datan.')
-	st.write(data.dtypes)
+	st.write(data.dtypes.astype(str))
 
 
 with exploredata:
